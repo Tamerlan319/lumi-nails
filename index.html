@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f8">
+  <meta name="description" content="LUMI NAILS — маникюрная студия в Москве. Маникюр, укрепление, nail art, онлайн-запись и подбор дизайна.">
+  <title>LUMI NAILS — маникюрная студия</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <a class="brand" href="#top"><b>LUMI</b><span>NAILS</span></a>
+    <nav class="nav" id="nav">
+      <button data-go="services">Услуги</button>
+      <button data-go="masters">Мастера</button>
+      <button data-go="portfolio">Работы</button>
+      <button data-go="price">Прайс</button>
+      <button data-go="loyalty">Лояльность</button>
+      <button data-go="reviews">Отзывы</button>
+    </nav>
+    <div class="headerRight">
+      <a class="phone" href="tel:+79993101818">+7 (999) 310-18-18</a>
+      <button class="primary small js-modal-open">Записаться</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="heroCopy reveal">
+        <span class="kicker">Маникюрная студия · Москва</span>
+        <h1>Маникюр,<br><em>который хочется</em><br>рассматривать</h1>
+        <p>Чистая архитектура ногтя, тонкое покрытие и дизайн, подобранный именно под ваш стиль.</p>
+        <div class="heroActions">
+          <button class="primary shine js-modal-open">Записаться онлайн <b>↗</b></button>
+          <button class="ghost" data-go="portfolio">Смотреть работы <span>↓</span></button>
+        </div>
+        <div class="heroFacts">
+          <div><b>4.9</b><span>рейтинг студии</span></div>
+          <div><b>7+</b><span>лет опыта мастеров</span></div>
+          <div><b>2 800+</b><span>клиентов в год</span></div>
+        </div>
+      </div>
+
+      <div class="heroMedia reveal">
+        <img src="/assets/manicure-detail.webp" alt="Профессиональный маникюр в студии LUMI NAILS">
+        <div class="heroChip chipOne"><span>сегодня</span><b>2 свободных окна</b></div>
+        <div class="heroChip chipTwo"><span>стерильность</span><b>крафт-пакет вскрываем при вас</b></div>
+        <div class="orb orb1"></div><div class="orb orb2"></div>
+      </div>
+      <div class="scrollNote">SCROLL <span>↓</span></div>
+    </section>
+
+    <section class="ticker">
+      <div class="tickerTrack">
+        <span>маникюр</span><i>✦</i><span>укрепление</span><i>✦</i><span>nail art</span><i>✦</i><span>стерильность</span><i>✦</i><span>идеальный блик</span><i>✦</i>
+        <span>маникюр</span><i>✦</i><span>укрепление</span><i>✦</i><span>nail art</span><i>✦</i><span>стерильность</span><i>✦</i><span>идеальный блик</span><i>✦</i>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="sectionHeading reveal">
+        <div><span>01 · Услуги</span><h2>Всё, что нужно<br>для ухоженных рук</h2></div>
+        <p>Работаем на профессиональных материалах и не утолщаем ногти лишними слоями.</p>
+      </div>
+      <div class="servicesGrid">
+        <article class="serviceCard reveal"><div class="serviceIcon">✦</div><div class="serviceNum">01</div><h3>Маникюр + покрытие</h3><p>Комбинированный маникюр, выравнивание и стойкое покрытие.</p><b>2 500 ₽</b></article>
+        <article class="serviceCard reveal"><div class="serviceIcon">◇</div><div class="serviceNum">02</div><h3>Маникюр без покрытия</h3><p>Чистая обработка, форма, полировка и уход за кутикулой.</p><b>1 600 ₽</b></article>
+        <article class="serviceCard reveal"><div class="serviceIcon">⌁</div><div class="serviceNum">03</div><h3>Укрепление</h3><p>Укрепление гелем с архитектурой и выравниванием ногтевой пластины.</p><b>3 100 ₽</b></article>
+        <article class="serviceCard reveal"><div class="serviceIcon">✿</div><div class="serviceNum">04</div><h3>Nail art</h3><p>Френч, геометрия, втирка, линии и художественный дизайн.</p><b>от 200 ₽</b></article>
+        <article class="serviceCard reveal"><div class="serviceIcon">◌</div><div class="serviceNum">05</div><h3>Снятие + уход</h3><p>Бережное снятие, опил формы и восстанавливающий уход.</p><b>1 100 ₽</b></article>
+        <article class="serviceCard reveal"><div class="serviceIcon">♡</div><div class="serviceNum">06</div><h3>SPA для рук</h3><p>Пилинг, маска, массаж и интенсивное питание кожи.</p><b>900 ₽</b></article>
+      </div>
+    </section>
+
+    <section class="portfolioSection" id="portfolio">
+      <div class="sectionHeading reveal">
+        <div><span>02 · Портфолио</span><h2>Работы, которые<br>говорят сами</h2></div>
+        <p>Не повторяем дизайн механически — адаптируем цвет, длину и детали под руки клиента.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="active" data-filter="Все">Все</button><button data-filter="Nude">Nude</button><button data-filter="Минимализм">Минимализм</button><button data-filter="Цвет">Цвет</button><button data-filter="Nail art">Nail art</button><button data-filter="Классика">Классика</button>
+      </div>
+      <div class="portfolioGrid" id="portfolioGrid">
+        <figure class="portfolioCard reveal p0" data-tag="Однотон"><img src="/assets/pink-nails.webp" alt="Glossy Pink"><figcaption><span>Однотон</span><h3>Glossy Pink</h3><b>↗</b></figcaption></figure>
+        <figure class="portfolioCard reveal p1" data-tag="Минимализм"><img src="/assets/nail-lines.webp" alt="Soft Geometry"><figcaption><span>Минимализм</span><h3>Soft Geometry</h3><b>↗</b></figcaption></figure>
+        <figure class="portfolioCard reveal p2" data-tag="Nude"><img src="/assets/nail-polish.webp" alt="Natural Base"><figcaption><span>Nude</span><h3>Natural Base</h3><b>↗</b></figcaption></figure>
+        <figure class="portfolioCard reveal p3" data-tag="Nail art"><img src="/assets/pink-process.webp" alt="Pink Atelier"><figcaption><span>Nail art</span><h3>Pink Atelier</h3><b>↗</b></figcaption></figure>
+        <figure class="portfolioCard reveal p4" data-tag="Цвет"><img src="/assets/mint-file.webp" alt="Fresh Mint"><figcaption><span>Цвет</span><h3>Fresh Mint</h3><b>↗</b></figcaption></figure>
+        <figure class="portfolioCard reveal p5" data-tag="Классика"><img src="/assets/manicure-detail.webp" alt="Clean Nude"><figcaption><span>Классика</span><h3>Clean Nude</h3><b>↗</b></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="mastersSection section" id="masters">
+      <div class="sectionHeading reveal">
+        <div><span>03 · Мастера</span><h2>Ваши мастера</h2></div>
+        <p>Подбираем мастера не только по свободному времени, но и по технике, которую вы любите.</p>
+      </div>
+      <div class="masters">
+        <article class="master reveal">
+          <div class="masterPhoto"><img src="/assets/master-1.webp" alt="Анна — топ-мастер LUMI NAILS"></div>
+          <div class="masterInfo"><span>TOP MASTER</span><h3>Анна Соколова</h3><p>7 лет опыта · архитектура · сложное укрепление · тонкий френч</p><div class="tags"><i>френч</i><i>nude</i><i>укрепление</i></div><button class="js-modal-open">Записаться к Анне ↗</button></div>
+        </article>
+        <article class="master reveal">
+          <div class="masterPhoto"><img src="/assets/master-2.webp" alt="Мария — nail artist LUMI NAILS"></div>
+          <div class="masterInfo"><span>NAIL ARTIST</span><h3>Мария Лебедева</h3><p>5 лет опыта · nail art · цвет · трендовые дизайны и мягкая архитектура</p><div class="tags"><i>art</i><i>color</i><i>design</i></div><button class="js-modal-open">Записаться к Марии ↗</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quizSection" id="design">
+      <div class="quizMedia reveal">
+        <img id="quizMediaImage" src="/assets/nail-polish.webp" alt="Подбор дизайна ногтей">
+        <div><b>DESIGN MATCH</b><span>найдём ваш стиль за 30 секунд</span></div>
+      </div>
+      <div class="quizCard reveal" id="quizCard"></div>
+    </section>
+
+    <section class="pricing section" id="price">
+      <div class="sectionHeading reveal">
+        <div><span>04 · Прайс</span><h2>Понятный прайс</h2></div>
+        <p>Финальную стоимость фиксируем до начала процедуры. Без неожиданных доплат после маникюра.</p>
+      </div>
+      <div class="priceLayout">
+        <div class="priceList reveal">
+          <div><span>01</span><h3>Маникюр + покрытие</h3><i></i><b>2 500 ₽</b></div>
+          <div><span>02</span><h3>Маникюр без покрытия</h3><i></i><b>1 600 ₽</b></div>
+          <div><span>03</span><h3>Укрепление гелем</h3><i></i><b>3 100 ₽</b></div>
+          <div><span>04</span><h3>Френч</h3><i></i><b>+ 500 ₽</b></div>
+          <div><span>05</span><h3>Сложный дизайн</h3><i></i><b>от 700 ₽</b></div>
+          <div><span>06</span><h3>Снятие чужого покрытия</h3><i></i><b>400 ₽</b></div>
+        </div>
+        <div class="priceImage reveal"><img src="/assets/manicure-care.webp" alt="Бережный профессиональный маникюр"><div class="roundLabel">90–120<small>минут на комплекс</small></div></div>
+      </div>
+    </section>
+
+    <section class="offerSection">
+      <div class="offerText reveal"><span>WELCOME OFFER</span><h2>Первое знакомство<br><em>−15% на комплекс</em></h2><p>Маникюр + покрытие + простой дизайн. Скидка применяется автоматически при первой записи.</p><button class="lightButton js-modal-open">Забронировать время ↗</button></div>
+      <div class="offerImage reveal"><img src="/assets/pink-nails.webp" alt="Акция на первый визит"><div class="discount">−15%</div></div>
+    </section>
+
+    <section class="loyalty section" id="loyalty">
+      <div class="sectionHeading reveal">
+        <div><span>05 · Программа лояльности</span><h2>Любим постоянных</h2></div>
+        <p>Программа привязана к номеру телефона — пластиковая карта не нужна.</p>
+      </div>
+      <div class="loyaltyGrid">
+        <div class="loyaltyCard reveal"><div class="cardGlow"></div><span>LUMI CLUB</span><h3>beauty card</h3><b>5% → 10%</b><p>Персональная скидка растёт вместе с количеством визитов.</p><small>member · 002814</small></div>
+        <div class="loyaltySteps">
+          <div class="reveal"><b>01</b><h3>5% после 3 визитов</h3><p>Скидка на услуги и уход для рук.</p></div>
+          <div class="reveal"><b>02</b><h3>10% после 8 визитов</h3><p>Постоянная скидка на основные услуги.</p></div>
+          <div class="reveal"><b>03</b><h3>Подарок ко дню рождения</h3><p>Комплимент студии и дополнительный бонус.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="salonSection">
+      <img src="/assets/salon-interior.webp" alt="Интерьер маникюрной студии LUMI NAILS">
+      <div class="salonOverlay reveal"><span>Студия</span><h2>Место, где можно<br>выдохнуть</h2><p>Спокойная музыка, кофе, удобные кресла и чистое рабочее пространство.</p><div><b>Москва</b><span>ул. Малая Бронная, 24</span></div></div>
+    </section>
+
+    <section class="reviews section" id="reviews">
+      <div class="sectionHeading reveal">
+        <div><span>06 · Отзывы</span><h2>К нам возвращаются</h2></div>
+        <p>Средняя оценка — 4.9. Большинство новых клиентов приходят по рекомендациям.</p>
+      </div>
+      <div class="reviewWrap reveal">
+        <button class="reviewArrow" id="reviewPrev">←</button>
+        <article class="reviewCard">
+          <div class="stars">★★★★★</div>
+          <blockquote id="reviewText"></blockquote>
+          <div class="reviewPerson"><span id="reviewAvatar"></span><div><b id="reviewName"></b><small>клиент LUMI NAILS</small></div></div>
+        </article>
+        <button class="reviewArrow" id="reviewNext">→</button>
+      </div>
+      <div class="reviewDots" id="reviewDots"></div>
+    </section>
+
+    <section class="bookingSection" id="booking">
+      <div class="bookingCopy reveal"><span>Онлайн-запись</span><h2>Выберите удобное<br>время для себя</h2><p>Оставьте контакты — администратор подтвердит запись и поможет с выбором мастера.</p><div class="bookingFacts"><div><b>24/7</b><span>форма работает круглосуточно</span></div><div><b>15 мин</b><span>среднее время ответа</span></div></div></div>
+      <form class="bookingForm reveal js-booking-form">
+        <label>Ваше имя<input name="name" required placeholder="Анна"></label>
+        <label>Телефон<input name="phone" required placeholder="+7 (___) ___-__-__"></label>
+        <label>Услуга<select name="service"><option value="">Выберите услугу</option><option>Маникюр + покрытие</option><option>Маникюр без покрытия</option><option>Укрепление</option><option>Nail art</option><option>Снятие + уход</option><option>SPA для рук</option></select></label>
+        <div class="formRow"><label>Дата<input name="date" type="date"></label><label>Время<select name="time"><option value="">Выберите</option><option>10:00</option><option>12:30</option><option>15:00</option><option>17:30</option><option>20:00</option></select></label></div>
+        <label class="check"><input type="checkbox" required><span>Согласна на обработку персональных данных</span></label>
+        <button class="primary shine" type="submit">Отправить заявку ↗</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div><a class="brand footerBrand" href="#top"><b>LUMI</b><span>NAILS</span></a><p>Маникюрная студия аккуратной архитектуры и дизайна.</p></div>
+    <div><b>Навигация</b><button data-go="services">Услуги</button><button data-go="portfolio">Портфолио</button><button data-go="masters">Мастера</button></div>
+    <div><b>Контакты</b><a href="tel:+79993101818">+7 (999) 310-18-18</a><a href="mailto:hello@luminails.ru">hello@luminails.ru</a><span>Москва, ул. Малая Бронная, 24</span></div>
+    <div><b>Режим работы</b><span>Пн–Вс · 10:00–22:00</span><div class="socials"><a href="#">VK</a><a href="#">TG</a><a href="#">WA</a></div></div>
+    <small>© 2026 LUMI NAILS · Политика конфиденциальности</small>
+  </footer>
+
+  <button class="mobileBook js-modal-open">Записаться онлайн</button>
+
+  <div class="modalBackdrop" id="modalBackdrop" hidden>
+    <div class="modal">
+      <button class="close" id="modalClose">×</button>
+      <span class="kicker dark">Быстрая запись</span><h2>Забронировать<br>визит</h2><p>Оставьте номер — мы уточним услугу, мастера и удобное время.</p>
+      <form class="js-booking-form"><input name="name" placeholder="Ваше имя" required><input name="phone" placeholder="+7 (___) ___-__-__" required><select name="service"><option value="">Выберите услугу</option><option>Маникюр + покрытие</option><option>Маникюр без покрытия</option><option>Укрепление</option><option>Nail art</option></select><button class="primary shine">Отправить заявку ↗</button></form>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>
