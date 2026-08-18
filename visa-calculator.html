@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Расчёт визового сбора</title>
+  <style>
+    :root {
+      --bg: #f5f6fa;
+      --surface: #ffffff;
+      --text: #16181d;
+      --muted: #737783;
+      --line: #e8e9ee;
+      --accent: #ff6534;
+      --accent-dark: #ed5425;
+      --accent-soft: #fff3ee;
+      --success: #23845c;
+      --danger: #bd3d3d;
+      --shadow: 0 26px 80px rgba(24, 29, 39, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; background: var(--bg); }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 101, 52, .08), transparent 30rem),
+        radial-gradient(circle at 100% 100%, rgba(98, 112, 255, .06), transparent 30rem),
+        var(--bg);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 50px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+
+    .demo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #575b65;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: .02em;
+    }
+
+    .demo-mark::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 5px rgba(35, 132, 92, .10);
+    }
+
+    .home-link {
+      color: #686c76;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .18s ease;
+    }
+
+    .home-link:hover { color: var(--text); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(340px, .94fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .intro {
+      padding: 24px 10px 0 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin: 20px 0 18px;
+      font-size: clamp(42px, 5.4vw, 72px);
+      line-height: .98;
+      letter-spacing: -.05em;
+      font-weight: 780;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .rate-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 74px;
+      margin-top: 34px;
+      padding: 12px 18px;
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 17px;
+      background: rgba(255,255,255,.68);
+      box-shadow: 0 8px 25px rgba(31, 35, 45, .04);
+      backdrop-filter: blur(12px);
+    }
+
+    .rate-icon {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      flex: 0 0 43px;
+      border-radius: 13px;
+      background: #18191d;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .rate-card small,
+    .rate-card strong { display: block; }
+
+    .rate-card small {
+      margin-bottom: 3px;
+      color: #8b8e97;
+      font-size: 11px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .rate-card strong {
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .rate-meta {
+      margin-top: 8px;
+      color: #92959e;
+      font-size: 12px;
+    }
+
+    .calculator {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid rgba(15,18,25,.06);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .calculator::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      background: rgba(255, 101, 52, .08);
+      pointer-events: none;
+    }
+
+    .calc-head {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 22px;
+    }
+
+    .calc-head span {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .calc-head h2 {
+      margin: 8px 0 7px;
+      font-size: 28px;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    .calc-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .services {
+      display: grid;
+      gap: 9px;
+    }
+
+    .service {
+      display: block;
+      cursor: pointer;
+    }
+
+    .service input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .service-box {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 13px;
+      min-height: 70px;
+      padding: 13px 15px;
+      border: 1.5px solid var(--line);
+      border-radius: 15px;
+      background: #fff;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .service:hover .service-box {
+      transform: translateY(-1px);
+      border-color: #ffc4b0;
+    }
+
+    .service input:checked + .service-box {
+      border-color: var(--accent);
+      background: #fff9f7;
+      box-shadow: 0 7px 22px rgba(255, 101, 52, .08);
+    }
+
+    .radio {
+      position: relative;
+      width: 21px;
+      height: 21px;
+      border: 2px solid #d2d4da;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .service input:checked + .service-box .radio {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .service input:checked + .service-box .radio::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .service-copy { min-width: 0; }
+
+    .service-copy strong,
+    .service-copy small { display: block; }
+
+    .service-copy strong {
+      margin-bottom: 3px;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .service-copy small {
+      color: #858892;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .usd {
+      color: #50535c;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .calculate {
+      position: relative;
+      width: 100%;
+      min-height: 58px;
+      margin-top: 19px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 15px;
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 12px 28px rgba(255, 101, 52, .23);
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .calculate:hover {
+      transform: translateY(-1px);
+      background: var(--accent-dark);
+      box-shadow: 0 15px 32px rgba(255, 101, 52, .28);
+    }
+
+    .calculate:disabled {
+      cursor: wait;
+      opacity: .7;
+      transform: none;
+    }
+
+    .result {
+      display: none;
+      margin-top: 16px;
+      padding: 21px;
+      border: 1px solid #ffe0d5;
+      border-radius: 17px;
+      background: linear-gradient(135deg, #fff4ef 0%, #fffafa 100%);
+      text-align: center;
+    }
+
+    .result.show {
+      display: block;
+      animation: rise .24s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-label {
+      color: #7e818a;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .result-price {
+      margin-top: 4px;
+      font-size: 40px;
+      line-height: 1;
+      font-weight: 820;
+      letter-spacing: -.04em;
+    }
+
+    .result-info {
+      margin-top: 8px;
+      color: #868991;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .error {
+      display: none;
+      margin-top: 15px;
+      padding: 13px 15px;
+      border: 1px solid #f3cccc;
+      border-radius: 13px;
+      background: #fff5f5;
+      color: var(--danger);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .error.show { display: block; }
+
+    .footnote {
+      margin-top: 14px;
+      color: #a0a2a9;
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .page { width: min(100% - 28px, 680px); padding-top: 22px; }
+      .topbar { margin-bottom: 24px; }
+      .layout { grid-template-columns: 1fr; gap: 28px; }
+      .intro { padding: 10px 2px 0; }
+      h1 { font-size: clamp(40px, 11vw, 64px); }
+      .lead { font-size: 16px; }
+      .rate-card { margin-top: 24px; }
+    }
+
+    @media (max-width: 520px) {
+      .page { width: calc(100% - 20px); padding-bottom: 20px; }
+      .home-link { display: none; }
+      .calculator { padding: 21px 16px; border-radius: 22px; }
+      .calc-head h2 { font-size: 24px; }
+      .service-box { grid-template-columns: 20px minmax(0, 1fr) auto; gap: 10px; padding: 12px; }
+      .service-copy strong { font-size: 13px; }
+      .service-copy small { font-size: 11px; }
+      .usd { font-size: 12px; }
+      .result-price { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="demo-mark">Демонстрационная страница</div>
+      <a class="home-link" href="/">← Вернуться на сайт</a>
+    </div>
+
+    <div class="layout">
+      <section class="intro">
+        <span class="eyebrow">Онлайн-калькулятор</span>
+        <h1>Расчёт визового сбора</h1>
+        <p class="lead">Стоимость автоматически пересчитывается в рубли по актуальному курсу доллара. Выберите нужный тип визы и нажмите кнопку расчёта.</p>
+
+        <div class="rate-card" aria-live="polite">
+          <div class="rate-icon">$</div>
+          <div>
+            <small>Текущий курс</small>
+            <strong id="rateValue">Получаем курс…</strong>
+            <div class="rate-meta" id="rateMeta">Источник: Банк России</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="calculator" aria-labelledby="calculatorTitle">
+        <div class="calc-head">
+          <span>5 вариантов</span>
+          <h2 id="calculatorTitle">Выберите услугу</h2>
+          <p>Расчёт выполняется без перезагрузки страницы.</p>
+        </div>
+
+        <div class="services" id="services">
+          <label class="service">
+            <input type="radio" name="visa" data-fee="0" checked>
+            <span class="service-box">
+              <span class="radio"></span>
+              <span class="service-copy">
+                <strong>Виза на месяц</strong>
+                <small>Для РФ и Казахстана</small>
+              </span>
+              <span class="usd">$0</span>
+            </span>
+          </label>
+
+          <label class="service">
+            <input type="radio" name="visa" data-fee="29.77">
+            <span class="service-box">
+              <span class="radio"></span>
+              <span class="service-copy">
+                <strong>Виза на месяц</strong>
+                <small>Для других стран</small>
+              </span>
+              <span class="usd">$29.77</span>
+            </span>
+          </label>
+
+          <label class="service">
+            <input type="radio" name="visa" data-fee="47.63">
+            <span class="service-box">
+              <span class="radio"></span>
+              <span class="service-copy">
+                <strong>Виза на год</strong>
+                <small>Для всех стран</small>
+              </span>
+              <span class="usd">$47.63</span>
+            </span>
+          </label>
+
+          <label class="service">
+            <input type="radio" name="visa" data-fee="142.89">
+            <span class="service-box">
+              <span class="radio"></span>
+              <span class="service-copy">
+                <strong>Виза на 5 лет</strong>
+                <small>Для РФ и Казахстана</small>
+              </span>
+              <span class="usd">$142.89</span>
+            </span>
+          </label>
+
+          <label class="service">
+            <input type="radio" name="visa" data-fee="238.14">
+            <span class="service-box">
+              <span class="radio"></span>
+              <span class="service-copy">
+                <strong>Виза на 5 лет</strong>
+                <small>Для других стран</small>
+              </span>
+              <span class="usd">$238.14</span>
+            </span>
+          </label>
+        </div>
+
+        <button class="calculate" id="calculate" type="button">Рассчитать стоимость</button>
+
+        <div class="result" id="result" aria-live="polite">
+          <div class="result-label">Стоимость на текущую дату</div>
+          <div class="result-price"><span id="resultPrice">0</span> ₽</div>
+          <div class="result-info" id="resultInfo"></div>
+        </div>
+
+        <div class="error" id="error" aria-live="polite"></div>
+        <div class="footnote">Курс загружается автоматически. Если курс недоступен, калькулятор не подставляет устаревшее фиксированное значение.</div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const rateValue = document.getElementById('rateValue');
+      const rateMeta = document.getElementById('rateMeta');
+      const calculateButton = document.getElementById('calculate');
+      const result = document.getElementById('result');
+      const resultPrice = document.getElementById('resultPrice');
+      const resultInfo = document.getElementById('resultInfo');
+      const error = document.getElementById('error');
+
+      let ratePromise = null;
+      let rateData = null;
+
+      const formatMoney = value => new Intl.NumberFormat('ru-RU', {
+        maximumFractionDigits: 0
+      }).format(value);
+
+      function normalizeDate(value) {
+        if (!value) return '';
+
+        // Банк России в XML возвращает DD.MM.YYYY.
+        if (/^\d{2}\.\d{2}\.\d{4}$/.test(value)) return value;
+
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('ru-RU');
+      }
+
+      function showError(message) {
+        result.classList.remove('show');
+        error.textContent = message;
+        error.classList.add('show');
+      }
+
+      function hideError() {
+        error.textContent = '';
+        error.classList.remove('show');
+      }
+
+      async function loadRate() {
+        if (rateData) return rateData;
+        if (ratePromise) return ratePromise;
+
+        ratePromise = fetch('/api/usd-rate', { cache: 'no-store' })
+          .then(async response => {
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok || !data.ok || !Number.isFinite(Number(data.rate))) {
+              throw new Error(data.error || 'Курс недоступен');
+            }
+
+            rateData = {
+              rate: Number(data.rate),
+              date: normalizeDate(data.date),
+              source: data.source || 'Банк России'
+            };
+
+            rateValue.textContent = `1 USD = ${rateData.rate.toFixed(2).replace('.', ',')} ₽`;
+            rateMeta.textContent = `${rateData.source}${rateData.date ? ` · на ${rateData.date}` : ''}`;
+            return rateData;
+          })
+          .catch(err => {
+            ratePromise = null;
+            rateValue.textContent = 'Курс временно недоступен';
+            rateMeta.textContent = 'Повторим запрос при расчёте';
+            throw err;
+          });
+
+        return ratePromise;
+      }
+
+      async function calculate() {
+        hideError();
+        const selected = document.querySelector('input[name="visa"]:checked');
+        if (!selected) return showError('Выберите тип визы.');
+
+        const fee = Number(selected.dataset.fee);
+        if (!Number.isFinite(fee)) return showError('Не удалось определить стоимость услуги.');
+
+        if (fee === 0) {
+          resultPrice.textContent = '0';
+          resultInfo.textContent = 'Для выбранного варианта визовый сбор отсутствует.';
+          result.classList.add('show');
+          return;
+        }
+
+        calculateButton.disabled = true;
+        calculateButton.textContent = 'Получаем актуальный курс…';
+
+        try {
+          const current = await loadRate();
+          const total = Math.round(fee * current.rate);
+          resultPrice.textContent = formatMoney(total);
+          resultInfo.textContent = `$${fee.toFixed(2)} × ${current.rate.toFixed(2).replace('.', ',')} ₽${current.date ? ` · курс на ${current.date}` : ''}`;
+          result.classList.add('show');
+        } catch (err) {
+          showError('Не удалось получить актуальный курс доллара. Попробуйте выполнить расчёт ещё раз.');
+        } finally {
+          calculateButton.disabled = false;
+          calculateButton.textContent = 'Рассчитать стоимость';
+        }
+      }
+
+      calculateButton.addEventListener('click', calculate);
+
+      document.querySelectorAll('input[name="visa"]').forEach(input => {
+        input.addEventListener('change', () => {
+          hideError();
+          result.classList.remove('show');
+        });
+      });
+
+      loadRate().catch(() => {});
+    })();
+  </script>
+</body>
+</html>
