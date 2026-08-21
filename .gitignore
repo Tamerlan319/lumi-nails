@@ -2,3 +2,7 @@
 .env
 .env.local
 .DS_Store
+telegram-bot/.env
+telegram-bot/.venv/
+telegram-bot/booking.sqlite3
+telegram-bot/__pycache__/

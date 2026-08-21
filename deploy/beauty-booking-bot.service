@@ -1,0 +1,17 @@
+[Unit]
+Description=Beauty Salon Telegram Booking Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=beautybot
+Group=beautybot
+WorkingDirectory=/opt/beauty-booking-bot
+EnvironmentFile=/opt/beauty-booking-bot/.env
+ExecStart=/opt/beauty-booking-bot/.venv/bin/python /opt/beauty-booking-bot/bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
